@@ -1,5 +1,9 @@
+import 'dart:js_util';
+
+import 'package:ecommerce_app/models/cart.dart';
 import 'package:ecommerce_app/models/shoe.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../components/shoetile.dart';
 class ShopPage extends StatefulWidget {
@@ -10,9 +14,21 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+  // add shoe to Cart 
+     void addShoeToCart(Shoe shoe){
+      Provider.of<Cart>(context,listen: false).addItemToCart(shoe);
+      // shoe successfully added 
+      showDialog(
+        
+        context: context, 
+        builder: (context) => AlertDialog(
+          title: Text('Successfully Added To Cart'),
+          content: Text('Check your Cart'),
+        ));
+     }
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Consumer<Cart>(builder:(context,value,child)=> Column(children: [
       // search box 
    Container(
     padding: const EdgeInsets.all(12),
@@ -23,7 +39,7 @@ class _ShopPageState extends State<ShopPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [ 
         Text('Search',
-        style: TextStyle(color: Colors.grey[100]),),
+        style: TextStyle(color: Colors.grey[500]),),
         Icon(Icons.search),
       ],
     ),
@@ -39,13 +55,13 @@ class _ShopPageState extends State<ShopPage> {
     ),
 
       // hot picks 
-      Padding(
+       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
 
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
-          children: const [Text('HotPicks',
+          children: const [Text('Hot Picks',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 24,
@@ -64,11 +80,21 @@ class _ShopPageState extends State<ShopPage> {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context,index){
           // create a shoe 
-          Shoe shoe =Shoe(name: 'Air JOrdan 1 Shadow',price:'300', imagepath:'lib/image/JORDAN1.png' ,description: 'cool shoe',);
+          Shoe shoe =value.getShoeList()[index];
+          // return the shoe 
           return Shoetile(
             shoe: shoe,
+            onTap: () => addShoeToCart(shoe),
           );
-        },),),
-    ],);
+        },
+        ),
+        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 25.0,left: 25.0,right: 25.0),
+        //   child: Divider(
+        //     color: Colors.white,
+        //   ),
+        // ),
+    ],), );
   }
 }

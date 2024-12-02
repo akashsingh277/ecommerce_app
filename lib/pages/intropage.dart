@@ -21,26 +21,33 @@ class IntroPage extends StatelessWidget {
               // logo
               Padding(
                 padding: const EdgeInsets.all(25.0),
-                child: Image.asset('lib/image/nike.png',
+                child: Image.asset('lib/image/nike_PNG18.png',
                 height: 240,
+                // backgroundColor:Colors.grey.shade300,
                 ),
               ),
               const SizedBox(height: 24),
           
               // title
-          const Text('Just Do It',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),),
+          Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: const Text('Just Do It',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),),
+          ),
           
               // subtitle
-          const Text('Brand new sneakers and custom kicks made with premium quality',
-          style: TextStyle(
-             color: Colors.grey,
-            fontSize: 16,
+          Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: const Text('Brand new sneakers and custom kicks made with premium quality',
+            style: TextStyle(
+               color: Colors.grey,
+              fontSize: 16,
+            ),
+            textAlign: TextAlign.center,),
           ),
-          textAlign: TextAlign.center,),
           
           // startbutton 
 
@@ -48,18 +55,21 @@ class IntroPage extends StatelessWidget {
             onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context)=>HomePage()
             ),
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[900],
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(25),
-                child: Center(
-                  child: Text('Shop Now',
-                    style: TextStyle(color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),),
+            child: Padding(
+              padding: const EdgeInsets.all(25.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(25),
+                  child: Center(
+                    child: Text('Shop Now',
+                      style: TextStyle(color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),),
+                  ),
                 ),
               ),
             ),
